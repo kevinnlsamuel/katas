@@ -1,12 +1,11 @@
-.PHONY: build
-name ?= $(PWD)
+.PHONY: build test
+name := $(basename $(PWD))
 
-BATS ?= $(shell git rev-parse --show-toplevel)/bats/bin/bats
+BATS ?= $(shell git rev-parse --show-toplevel)/bats/bats/bin/bats
 
 test: $(name)
-	$(BATS) test/
+	MAIN=$(realpath $(name)) $(BATS) test/
 build: $(name)
 
-$(name): main.c
+$(name): main.c solution.c
 	$(CC) -o $(name) main.c
-main.c: %.h
