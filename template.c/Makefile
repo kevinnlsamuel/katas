@@ -8,4 +8,4 @@ test: $(name)
 build: $(name)
 
 $(name): main.c solution.c
-	$(CC) -o $(name) main.c
+	$(CC) -g -o $(name) main.c
